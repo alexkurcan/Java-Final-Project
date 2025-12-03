@@ -7,6 +7,7 @@ public class Splot {
     private static int count = 0;
     private static double balance = 0;
     static int wins; 
+    static int losses; 
 
     public Splot() {
         this.bet = 3;
@@ -40,6 +41,7 @@ public class Splot {
             return 2;
         } else {
             balance -= bet;
+            losses++; 
             return 0;
         }
     }
@@ -71,7 +73,7 @@ public class Splot {
 
     System.out.println("Your outcome was: " + s1.outcome());
     System.out.printf("Balance: $%.2f\n", Splot.balance);
-    System.out.printf("You won %d times\n", Splot.wins);
+
 }
 
 
@@ -81,5 +83,7 @@ public class Splot {
         } while (replay.equals("y"));
         clear();
         System.out.printf("Cashed out at: $%.2f\n", Splot.balance);
+        System.out.printf("You won %d times\n", Splot.wins);
+        System.out.printf("You losses %d times\n", Splot.losses);
     }
 }
