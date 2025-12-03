@@ -1,4 +1,3 @@
-import java.util.*; 
 public class bingo {
     // four different bingo boards
     public static void main(String[] args) {
