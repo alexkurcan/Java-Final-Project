@@ -89,9 +89,18 @@ public class BingoBoop {
         BingoBoop bingoBoop = new BingoBoop();
         int[][] test = new int[5][5]; 
         int[][] beep1 = {{1, 1, 1, 1, 1} , {1, 1, 1, 1, 1}, {1, 1, 1, 1, 1}, {1, 1, 1, 1, 1}, {1, 1, 1, 1, 1}};
-        int[][] beep2 = {{0, 1, 1, 1, 1} , {0, 1, 1, 1, 1}, {0, 1, 1, 1, 1}, {0, 1, 1, 1, 1}, {0, 1, 1, 1, 1}};  
+        int[][] beep2 = {{0, 1, 1, 1, 1} , {0, 1, 1, 1, 1}, {0, 1, 1, 1, 1}, {0, 1, 1, 1, 1}, {0, 1, 1, 1, 1}};
+        int[][] beep3 = {{0, 1, 1, 1, 1} , {1, 0, 1, 1, 1}, {1, 0, 1, 1, 1}, {1, 1, 1, 1, 0}, {1, 1, 0, 1, 1}};
+        int[][] beep4 = {{0, 1, 1, 1, 1} , {1, 0, 1, 1, 1}, {1, 1, 0, 1, 1}, {1, 1, 1, 0, 1}, {1, 1, 1, 1, 0}};
+        int[][] beep5 = {{1, 1, 1, 1, 0} , {1, 1, 1, 0, 1}, {1, 1, 0, 1, 1}, {1, 0, 1, 1, 1}, {0, 1, 1, 1, 1}};
         bingoBoop.start();
+        
+        // tests the checkWin system
+        System.out.println("\n\nTesting"); 
         System.out.println(checkWin(beep1));
-        System.out.println(checkWin(beep2)); 
+        System.out.println(checkWin(beep2));
+        System.out.println(checkWin(beep3));
+        System.out.println(checkWin(beep4)); 
+        System.out.println(checkWin(beep5)); 
     }
 }
