@@ -1,5 +1,5 @@
 import java.util.*;
-public class Splot {
+public class slot {
     private int num1;
     private int num2;
     private int num3;
@@ -9,11 +9,11 @@ public class Splot {
     static int wins; 
     static int losses; 
 
-    public Splot() {
+    public slot() {
         this.bet = 3;
     }
 
-    public Splot(int bet) {
+    public slot(int bet) {
         this.bet = bet;
     }
     
@@ -53,7 +53,7 @@ public class Splot {
     public static void main(String[] args) {
         Scanner kb = new Scanner(System.in);
         System.out.println("Enter the starting balance: ");
-        Splot.balance = kb.nextDouble();
+        slot.balance = kb.nextDouble();
 
         String replay;
         do {
@@ -66,13 +66,13 @@ public class Splot {
             clear();
 
            for (int i = 1; i <= numturns; i++) {
-    Splot s1 = new Splot(bet);
+    slot s1 = new slot(bet);
 
     s1.play();
-    System.out.println("Turn # " + Splot.getCount());
+    System.out.println("Turn # " + slot.getCount());
 
     System.out.println("Your outcome was: " + s1.outcome());
-    System.out.printf("Balance: $%.2f\n", Splot.balance);
+    System.out.printf("Balance: $%.2f\n", slot.balance);
 
 }
 
@@ -82,8 +82,8 @@ public class Splot {
 
         } while (replay.equals("y"));
         clear();
-        System.out.printf("Cashed out at: $%.2f\n", Splot.balance);
-        System.out.printf("You won %d times\n", Splot.wins);
-        System.out.printf("You losses %d times\n", Splot.losses);
+        System.out.printf("Cashed out at: $%.2f\n", slot.balance);
+        System.out.printf("You won %d times\n", slot.wins);
+        System.out.printf("You losses %d times\n", slot.losses);
     }
 }
