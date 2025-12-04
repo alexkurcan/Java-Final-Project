@@ -16,7 +16,6 @@ public abstract class CasinoGames {
     public CasinoGames(String gameName, int numPlayers, int numCards, double costToPlay) {
         this.gameName = gameName;
         this.numPlayers = numPlayers;
-        this.numCards = numCards;
         this.costToPlay = costToPlay;
         this.numWins = 0;
         this.numLosses = 0;
@@ -25,7 +24,6 @@ public abstract class CasinoGames {
     // Accessors / Mutators
     public String getGameName() { return gameName; }
     public int getNumPlayers() { return numPlayers; }
-    public int getNumCards() { return numCards; }
     public double getCostToPlay() { return costToPlay; }
     public int getNumWins() { return numWins; }
     public int getNumLosses() { return numLosses; }
