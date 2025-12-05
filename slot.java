@@ -81,17 +81,19 @@ public class slot {
     s1.play();
     System.out.println("Turn # " + slot.getCount());
 
+               // displays outcome of each turn 
     System.out.println("Your outcome was: " + s1.outcome());
     System.out.printf("Balance: $%.2f\n", slot.balance);
 
 }
 
-
+        // Replayability 
             System.out.println("Do you want to play again? (y/n): ");
             replay = kb.next().toLowerCase();
 
         } while (replay.equals("y"));
         clear();
+        // displays final outcome. wins, losses and balance 
         System.out.printf("Cashed out at: $%.2f\n", slot.balance);
         System.out.printf("You won %d times\n", slot.wins);
         System.out.printf("You losses %d times\n", slot.losses);
