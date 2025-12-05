@@ -1,3 +1,10 @@
+/*
+Programmer: Simone Brown
+Date: 12/5/2025 
+Class: 2025FA.CSC.151.2802
+Instructor: Mrs. Keller 
+Purpose: Extends the CasinoGames class, and allows someone to play a simulated game of Bingo 
+ */
 import java.util.*; 
 // This is the actual class which will implement Abstract methods like start or quit or wager.  
 public class Bingo extends CasinoGames {
