@@ -4,98 +4,136 @@ Afton Pate
 This program simulates a  slot machine
 */
 
-
 import java.util.*;
-// My slot class, includes wins, losses, and bet and stuff 
-public class slot {
+
+public class Slot extends CasinoGames {
+
     private int num1;
     private int num2;
     private int num3;
     private int bet;
-    private static int count = 0;
-    private static double balance = 0;
-    static int wins; 
-    static int losses; 
+    private double balance;
 
-    public slot() {
-        this.bet = 3;
+    public Slot(double costToPlay, double startingBalance) {
+        super("Slot Machine", 1, 0, costToPlay);
+        this.bet = (int) costToPlay;
+        this.balance = startingBalance;
     }
 
-    public slot(int bet) {
-        this.bet = bet;
+    public Slot(double costToPlay) {
+        super("Slot Machine", 1, 0, costToPlay);
+        this.bet = (int) costToPlay;
+        this.balance = 100;
     }
-    // This is MY clear function. IT makes the code look better while running
+    // This is MY clear function QUINT 
     public static void clear() {
         System.out.print("\033[H\033[2J");
         System.out.flush();
     }    
 
-    // This part finds 3 random numbers and prints them out 
+    // Finds 3 random numbers 
     public void play() {
         num1 = (int)(Math.random() * 10) + 1;
         num2 = (int)(Math.random() * 10) + 1;
         num3 = (int)(Math.random() * 10) + 1;
-        count++;
         System.out.println(num1 + " " + num2 + " " + num3);
     }
 
-    // This code finds how many numbers are the same and gives back the bet accordingly 
+    // To find how many numbers are the same and accoridngly update the bet 
     public int outcome() {
         if (num1 == num2 && num2 == num3) {
             balance += bet * 5;
-            wins++;
             return 1;
         } else if (num1 == num2 || num1 == num3 || num2 == num3) {
             balance += bet * 2;
-            wins++;
             return 2;
         } else {
             balance -= bet;
-            losses++; 
             return 0;
         }
     }
 
-    public static int getCount() {
-        return count;
+    public double getBalance() {
+        return balance;
     }
-    // Runner / tester / Main 
-    public static void main(String[] args) {
+
+    @Override
+    public void playRound() {
         Scanner kb = new Scanner(System.in);
-        System.out.println("Enter the starting balance: ");
-        slot.balance = kb.nextDouble();
 
-        String replay;
-        do {
-            clear();
-            System.out.println("Enter your bet amount: ");
-            int bet = kb.nextInt();
-            clear();
-            System.out.println("Enter your # of plays: ");
-            int numturns = kb.nextInt();
-            clear();
-
-           for (int i = 1; i <= numturns; i++) {
-    slot s1 = new slot(bet);
-
-    s1.play();
-    System.out.println("Turn # " + slot.getCount());
-
-               // displays outcome of each turn 
-    System.out.println("Your outcome was: " + s1.outcome());
-    System.out.printf("Balance: $%.2f\n", slot.balance);
-
-}
-
-        // Replayability 
-            System.out.println("Do you want to play again? (y/n): ");
-            replay = kb.next().toLowerCase();
-
-        } while (replay.equals("y"));
         clear();
-        // displays final outcome. wins, losses and balance 
-        System.out.printf("Cashed out at: $%.2f\n", slot.balance);
-        System.out.printf("You won %d times\n", slot.wins);
-        System.out.printf("You losses %d times\n", slot.losses);
+        System.out.printf("Balance: $%.2f\n", balance);
+
+        boolean validBet = false;
+        while (!validBet) {
+            System.out.println("Enter your bet amount: ");
+
+            if (kb.hasNextInt()) {
+                int b = kb.nextInt();
+                if (b > 0 && b <= balance) {
+                    bet = b;
+                    validBet = true;
+                } else {
+                    System.out.println("Invalid bet amount.");
+                }
+            } else {
+                System.out.println("Invalid input.");
+                kb.next();
+            }
+        }
+
+        clear();
+
+        boolean validTurns = false;
+        int numturns = 0;
+
+        while (!validTurns) {
+            System.out.println("Enter your # of plays: ");
+
+            if (kb.hasNextInt()) {
+                int t = kb.nextInt();
+                if (t > 0) {
+                    numturns = t;
+                    validTurns = true;
+                    // error handling 
+                } else {
+                    System.out.println("Invalid number.");
+                }
+            } else {
+                System.out.println("Invalid input.");
+                kb.next();
+            }
+        }
+
+        clear();
+
+        // so you dont go into the negitives 
+        for (int i = 1; i <= numturns; i++) {
+
+            if (balance < bet) {
+                System.out.println("Not enough balance to continue.");
+                break;
+            }
+
+            play();
+            System.out.println("Turn # " + i);
+
+            int result = outcome();
+
+            // This adds wins or losses depending on if you win or loose
+            if (result == 1) {
+                System.out.println("Your outcome was: " + result);
+                addWin();
+            } else if (result == 2) {
+                System.out.println("Your outcome was: " + result);
+                addWin();
+            } else {
+                System.out.println("Your outcome was: " + result);
+                addLoss();
+            }
+
+            System.out.printf("Balance: $%.2f\n", balance);
+        }
     }
 }
+
