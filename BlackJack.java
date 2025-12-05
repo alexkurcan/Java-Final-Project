@@ -1,3 +1,11 @@
+/*
+Name: BlackJack.java 
+Purpose: A simple implementation of a Blackjack game extending CasinoGames.
+Author: Alex Kurcan
+Date: 12/05/2025
+*/
+
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
